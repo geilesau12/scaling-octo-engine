@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Space Game</title>
+    <style>
+        body { background-color: black; color: white; text-align: center; }
+        canvas { border: 1px solid white; }
+    </style>
+</head>
+<body>
+    <h1>Space Game</h1>
+    <canvas id="gameCanvas" width="800" height="600"></canvas>
+    <script>
+        // Basic game setup
+        const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');
+
+        // Game variables
+        let spaceship = { x: 400, y: 500, width: 50, height: 50 };
+
+        function drawSpaceship() {
+            ctx.fillStyle = 'white';
+            ctx.fillRect(spaceship.x, spaceship.y, spaceship.width, spaceship.height);
+        }
+
+        function updateGameArea() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            drawSpaceship();
+        }
+
+        setInterval(updateGameArea, 20);
+    </script>
+</body>
+</html>
