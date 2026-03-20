@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎮 Pixel Games Portal</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 50px;
+            animation: fadeInDown 0.8s ease;
+        }
+
+        .header h1 {
+            font-size: 3.5em;
+            margin-bottom: 10px;
+            text-shadow: 0 0 20px rgba(0,0,0,0.3);
+            letter-spacing: 2px;
+        }
+
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .game-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            animation: fadeInUp 0.8s ease backwards;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .game-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.5);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .game-card:nth-child(1) { animation-delay: 0.1s; }
+        .game-card:nth-child(2) { animation-delay: 0.2s; }
+        .game-card:nth-child(3) { animation-delay: 0.3s; }
+        .game-card:nth-child(4) { animation-delay: 0.4s; }
+        .game-card:nth-child(5) { animation-delay: 0.5s; }
+        .game-card:nth-child(6) { animation-delay: 0.6s; }
+
+        .game-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .game-card:hover::before {
+            left: 100%;
+        }
+
+        .game-icon {
+            font-size: 4em;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .game-card h2 {
+            font-size: 1.8em;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        .game-card p {
+            font-size: 0.95em;
+            opacity: 0.8;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .game-card a {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .game-card a:hover {
+            background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+            border-color: rgba(255, 255, 255, 0.8);
+            transform: scale(1.05);
+        }
+
+        .footer {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.8);
+            padding-top: 30px;
+            border-top: 2px solid rgba(255, 255, 255, 0.2);
+            font-size: 0.9em;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2.5em;
+            }
+
+            .games-grid {
+                gap: 20px;
+            }
+
+            .game-card {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎮 PIXEL GAMES</h1>
+            <p>Wähle dein Lieblingsspiel und tauche ein in Abenteuer!</p>
+        </div>
+
+        <div class="games-grid">
+            <div class="game-card">
+                <span class="game-icon">🏍️</span>
+                <h2>Motorcycle Master</h2>
+                <p>Fahre, springe und mache Flips! Sammle Münzen und meide Hindernisse.</p>
+                <a href="motorcycle.html">SPIELEN →</a>
+            </div>
+
+            <div class="game-card">
+                <span class="game-icon">⭐</span>
+                <h2>Pixel Runner</h2>
+                <p>Endlos-Läufer! Navigiere durch Hindernisse und sammle Münzen.</p>
+                <a href="runner.html">SPIELEN →</a>
+            </div>
+
+            <div class="game-card">
+                <span class="game-icon">🐦</span>
+                <h2>Flappy Bird</h2>
+                <p>Der Klassiker! Fliege durch die Rohre ohne zu kollidieren.</p>
+                <a href="flappy.html">SPIELEN →</a>
+            </div>
+
+            <div class="game-card">
+                <span class="game-icon">💎</span>
+                <h2>Gem Collector</h2>
+                <p>Sammle Juwelen und weiche intelligenten Feinden aus!</p>
+                <a href="gems.html">SPIELEN →</a>
+            </div>
+
+            <div class="game-card">
+                <span class="game-icon">🐉</span>
+                <h2>Dragon Adventure</h2>
+                <p>Fliege als Drache und bekämpfe Feinde! Sammle Schätze!</p>
+                <a href="dragon.html">SPIELEN →</a>
+            </div>
+
+            <div class="game-card">
+                <span class="game-icon">🌟</span>
+                <h2>Space Shooter</h2>
+                <p>Zerstöre Asteroiden im Weltall und sammle Punkte!</p>
+                <a href="space.html">SPIELEN →</a>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>© 2026 Pixel Games Portal | Entwickelt mit ❤️ und Canvas | <strong>Viel Spaß beim Spielen! 🎮</strong></p>
+        </div>
+    </div>
+</body>
+</html>
