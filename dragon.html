@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dragon Game</title>
+    <script>
+        // Simple Dragon Game Logic
+        let playerHealth = 100;
+        let dragonHealth = 100;
+
+        function attack() {
+            const damageToDragon = Math.floor(Math.random() * 10) + 1;
+            dragonHealth -= damageToDragon;
+            console.log(`You attacked the dragon and dealt ${damageToDragon} damage!`);
+            if (dragonHealth <= 0) {
+                console.log('You defeated the dragon!');
+                return;
+            }
+            dragonAttack();
+        }
+
+        function dragonAttack() {
+            const damageToPlayer = Math.floor(Math.random() * 10) + 1;
+            playerHealth -= damageToPlayer;
+            console.log(`The dragon attacked you and dealt ${damageToPlayer} damage!`);
+            if (playerHealth <= 0) {
+                console.log('You were defeated by the dragon!');
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Welcome to the Dragon Game!</h1>
+    <button onclick="attack()">Attack the Dragon</button>
+    <p>Your Health: <span id="player-health">100</span></p>
+    <p>Dragon Health: <span id="dragon-health">100</span></p>
+</body>
+</html>
