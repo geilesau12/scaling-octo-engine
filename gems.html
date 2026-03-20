@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gem Collector Game</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f4f4f4; }
+        canvas { background-color: #fff; display: block; margin: 0 auto; border: 1px solid #000; }
+        #gameContainer { text-align: center; }
+    </style>
+</head>
+<body>
+    <div id="gameContainer">
+        <h1>Gem Collector Game</h1>
+        <canvas id="gameCanvas" width="600" height="400"></canvas>
+        <br>
+        <button id="startGame">Start Game</button>
+        <p id="score">Score: 0</p>
+    </div>
+    <script>
+        const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');
+
+        let score = 0;
+        let gems = [];
+        let gameInterval;
+
+        class Gem {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = 15;
+            }
+
+            draw() {
+                ctx.fillStyle = 'green';
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        function createGems(num) {
+            for (let i = 0; i < num; i++) {
+                gems.push(new Gem());
+            }
+        }
+
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            gems.forEach(gem => gem.draw());
+        }
+
+        function updateScore() {
+            document.getElementById('score').innerText = `Score: ${score}`;
+        }
+
+        function gameOver() {
+            clearInterval(gameInterval);
+            alert(`Game Over! Your score is ${score}.`);
+            document.getElementById('startGame').disabled = false;
+        }
+
+        function checkClick(event) {
+            const rect = canvas.getBoundingClientRect();
+            const mouseX = event.clientX - rect.left;
+            const mouseY = event.clientY - rect.top;
+
+            gems.forEach((gem, index) => {
+                const dist = Math.sqrt((mouseX - gem.x) ** 2 + (mouseY - gem.y) ** 2);
+                if (dist < gem.size) {
+                    score++;
+                    gems.splice(index, 1);
+                    updateScore();
+                }
+            });
+
+            if (gems.length === 0) {
+                gameOver();
+            }
+        }
+
+        function startGame() {
+            gems = [];
+            score = 0;
+            createGems(5);
+            document.getElementById('startGame').disabled = true;
+            gameInterval = setInterval(() => {
+                draw();
+            }, 1000 / 60);
+        }
+
+        document.getElementById('startGame').addEventListener('click', startGame);
+        canvas.addEventListener('click', checkClick);
+    </script>
+</body>
+</html>
